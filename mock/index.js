@@ -7,10 +7,10 @@ import article from './article'
 import search from './remote-search'
 
 const mocks = [
-  ...user,
+  // ...user,
   // ...role,
-  ...article,
-  ...search
+  // ...article,
+  // ...search
 ]
 
 // for front mock
