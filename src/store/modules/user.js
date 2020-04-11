@@ -34,7 +34,6 @@ const actions = {
     const { username, password } = userInfo
     return new Promise((resolve, reject) => {
       login({ username: username.trim(), password: password }).then(response => {
-        alert(response.data)
         commit('SET_TOKEN', response.data)
         setToken(response.data)
         resolve()
@@ -46,10 +45,8 @@ const actions = {
 
   // get user info
   getInfo({ commit, state }) {
-    alert(state.token)
     return new Promise((resolve, reject) => {
       getInfo(state.token).then(response => {
-
         if (!response.data) {
           reject('Verification failed, please Login again.')
         }
