@@ -197,27 +197,28 @@ export const asyncRoutes = [
     name: 'Example',
     meta: {
       title: 'Example',
-      icon: 'example'
+      icon: 'example',
+      roles: ['editor']
     },
     children: [
       {
         path: 'create',
         component: () => import('@/views/example/create'),
         name: 'CreateArticle',
-        meta: { title: 'Create Article', icon: 'edit' }
+        meta: { title: 'Create Article', icon: 'edit', roles: ['editor'] }
       },
       {
         path: 'edit/:id(\\d+)',
         component: () => import('@/views/example/edit'),
         name: 'EditArticle',
-        meta: { title: 'Edit Article', noCache: true, activeMenu: '/example/list' },
+        meta: { title: 'Edit Article', noCache: true, activeMenu: '/example/list', roles: ['editor'] },
         hidden: true
       },
       {
         path: 'list',
         component: () => import('@/views/example/list'),
         name: 'ArticleList',
-        meta: { title: 'Article List', icon: 'list' }
+        meta: { title: 'Article List', icon: 'list', roles: ['editor'] }
       }
     ]
   },
@@ -225,12 +226,13 @@ export const asyncRoutes = [
   {
     path: '/tab',
     component: Layout,
+    meta: { roles: ['admin'] },
     children: [
       {
         path: 'index',
         component: () => import('@/views/tab/index'),
         name: 'Tab',
-        meta: { title: 'Tab', icon: 'tab' }
+        meta: { title: 'Tab', icon: 'tab', roles: ['admin'] }
       }
     ]
   },
@@ -280,32 +282,33 @@ export const asyncRoutes = [
     name: 'Excel',
     meta: {
       title: 'Excel',
-      icon: 'excel'
+      icon: 'excel',
+      roles: ['admin']
     },
     children: [
       {
         path: 'export-excel',
         component: () => import('@/views/excel/export-excel'),
         name: 'ExportExcel',
-        meta: { title: 'Export Excel' }
+        meta: { title: 'Export Excel', roles: ['admin'] }
       },
       {
         path: 'export-selected-excel',
         component: () => import('@/views/excel/select-excel'),
         name: 'SelectExcel',
-        meta: { title: 'Export Selected' }
+        meta: { title: 'Export Selected', roles: ['admin'] }
       },
       {
         path: 'export-merge-header',
         component: () => import('@/views/excel/merge-header'),
         name: 'MergeHeader',
-        meta: { title: 'Merge Header' }
+        meta: { title: 'Merge Header', roles: ['admin'] }
       },
       {
         path: 'upload-excel',
         component: () => import('@/views/excel/upload-excel'),
         name: 'UploadExcel',
-        meta: { title: 'Upload Excel' }
+        meta: { title: 'Upload Excel', roles: ['admin'] }
       }
     ]
   },
@@ -316,13 +319,13 @@ export const asyncRoutes = [
     redirect: '/zip/download',
     alwaysShow: true,
     name: 'Zip',
-    meta: { title: 'Zip', icon: 'zip' },
+    meta: { title: 'Zip', icon: 'zip', roles: ['admin'] },
     children: [
       {
         path: 'download',
         component: () => import('@/views/zip/index'),
         name: 'ExportZip',
-        meta: { title: 'Export Zip' }
+        meta: { title: 'Export Zip', roles: ['admin'] }
       }
     ]
   },
@@ -331,12 +334,13 @@ export const asyncRoutes = [
     path: '/pdf',
     component: Layout,
     redirect: '/pdf/index',
+    meta: { roles: ['admin'] },
     children: [
       {
         path: 'index',
         component: () => import('@/views/pdf/index'),
         name: 'PDF',
-        meta: { title: 'PDF', icon: 'pdf' }
+        meta: { title: 'PDF', icon: 'pdf', roles: ['admin'] }
       }
     ]
   },
@@ -349,12 +353,13 @@ export const asyncRoutes = [
   {
     path: '/theme',
     component: Layout,
+    meta: { roles: ['admin'] },
     children: [
       {
         path: 'index',
         component: () => import('@/views/theme/index'),
         name: 'Theme',
-        meta: { title: 'Theme', icon: 'theme' }
+        meta: { title: 'Theme', icon: 'theme', roles: ['admin'] }
       }
     ]
   },
@@ -362,12 +367,13 @@ export const asyncRoutes = [
   {
     path: '/clipboard',
     component: Layout,
+    meta: { roles: ['admin'] },
     children: [
       {
         path: 'index',
         component: () => import('@/views/clipboard/index'),
         name: 'ClipboardDemo',
-        meta: { title: 'Clipboard', icon: 'clipboard' }
+        meta: { title: 'Clipboard', icon: 'clipboard', roles: ['admin'] }
       }
     ]
   },
@@ -375,6 +381,7 @@ export const asyncRoutes = [
   {
     path: 'external-link',
     component: Layout,
+    meta: { roles: ['admin'] },
     children: [
       {
         path: 'https://github.com/PanJiaChen/vue-element-admin',
