@@ -8,6 +8,14 @@ export function login(data) {
   })
 }
 
+export function uploadImg(data) {
+  return request({
+    url: '/vue-element-admin/user/uploadImg',
+    method: 'post',
+    data
+  })
+}
+
 export function registerUser(data) {
   return request({
     url: '/vue-element-admin/user/register',
