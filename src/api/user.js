@@ -24,6 +24,13 @@ export function registerUser(data) {
   })
 }
 
+export function getPictureName() {
+  return request({
+    url: '/vue-element-admin/user/getPictureName',
+    method: 'post'
+  })
+}
+
 export function getInfo(token) {
   return request({
     url: '/vue-element-admin/user/info',
