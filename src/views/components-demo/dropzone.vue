@@ -9,13 +9,11 @@
     <br>
     <br>
     <br>
-    <div class="post">
-      <el-carousel id="el-carousel" :interval="2000" indicator-position="none">
-        <el-carousel-item v-for="item in carouselImages" :key="item">
-          <img :src="item ">
-        </el-carousel-item>
-      </el-carousel>
-    </div>
+    <el-carousel id="el-carousel" :interval="2000" indicator-position="none">
+      <el-carousel-item v-for="item in carouselImages" :key="item">
+        <img :src="item ">
+      </el-carousel-item>
+    </el-carousel>
   </div>
 </template>
 
