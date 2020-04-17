@@ -9,7 +9,7 @@
     <br>
     <br>
     <br>
-    <el-carousel id="el-carousel" :interval="2000" indicator-position="none">
+    <el-carousel trigger="click" :height="bannerHeight">
       <el-carousel-item v-for="item in carouselImages" :key="item">
         <img :src="item ">
       </el-carousel-item>
@@ -36,21 +36,19 @@ export default {
       ],
       avatarPrefix,
       carouselPrefix,
-      bannerHeight: 700,
-      screenWidth: 1920
+      bannerHeight: '150px',
+      screen: '0px'
     }
   },
 
   mounted() {
     this.getUserPicture()
-    this.setSize1()
-    const that = this
-
-    window.addEventListener('resize', function() {
-      var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth
-      that.screenWidth = width
-      that.setSize()
-    }, false)
+    this.screen = window.innerWidth
+    this.getSize()
+    window.onresize = () => {
+      this.screen = window.innerWidth
+      this.getSize()
+    }
   },
   methods: {
     dropzoneS(file) {
@@ -62,7 +60,6 @@ export default {
       this.$message({ message: 'Delete success', type: 'success' })
     },
     getUserPicture() {
-      // eslint-disable-next-line no-undef
       getPictureName().then(response => {
         if (response.code === '500') {
           this.$message({
@@ -76,30 +73,28 @@ export default {
         }
       })
     },
-
-    setSize1: function() {
-      var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth
-      this.screenWidth = width
-      this.bannerHeight = 700 / 1920 * this.screenWidth - 50
-      document.getElementById('el-carousel').style.height = this.bannerHeight + 'px'
-    },
-    setSize: function() {
-      this.bannerHeight = 700 / 1920 * this.screenWidth - 50
-      document.getElementById('el-carousel').style.height = this.bannerHeight + 'px'
+    getSize() {
+      if (this.screen > 480) {
+        this.bannerHeight = 300 + 'px'
+      } else {
+        this.bannerHeight = 150 + 'px'
+      }
     }
   }
 }
 </script>
 
 <style>
-  .el-carousel__container {
-    height: 100% !important;
+  .el-carousel__item img {
+    width: 100%;
+    height: 100%;
+  }
+  .el-carousel__item:nth-child(2n) {
+    background-color: #99a9bf;
   }
 
-  img {
-    display: inline-block;
-    height: auto;
-    max-width: 100%;
+  .el-carousel__item:nth-child(2n+1) {
+    background-color: #d3dce6;
   }
 </style>
 
