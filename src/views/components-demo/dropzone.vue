@@ -73,9 +73,7 @@ export default {
           })
         } else {
           if (response.data !== []) {
-            alert(response.data)
             this.carouselImages = response.data
-            alert(this.carouselImages)
           }
         }
       })
