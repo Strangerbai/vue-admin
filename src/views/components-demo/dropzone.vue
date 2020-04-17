@@ -72,7 +72,7 @@ export default {
             type: 'fail'
           })
         } else {
-          if (response.data !== []) {
+          if (response.data.length !== 0) {
             this.carouselImages = response.data
           }
         }
