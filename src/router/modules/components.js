@@ -23,7 +23,13 @@ const componentsRouter = {
       path: 'markdown',
       component: () => import('@/views/components-demo/markdown'),
       name: 'MarkdownDemo',
-      meta: { title: 'Markdown', roles: ['admin'] }
+      meta: { title: 'Markdown', roles: ['editor'] }
+    },
+    {
+      path: 'blog/:id(\\d+)',
+      component: () => import('@/views/components-demo/BlogDetail'),
+      name: 'blogDetail',
+      meta: { title: 'blogDetail', roles: ['editor'] }
     },
     {
       path: 'json-editor',

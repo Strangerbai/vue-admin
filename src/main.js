@@ -16,6 +16,7 @@ import router from './router'
 import './icons' // icon
 import './permission' // permission control
 import './utils/error-log' // error log
+import 'highlight.js/styles/tomorrow.css'
 
 import * as filters from './filters' // global filters
 
