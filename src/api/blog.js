@@ -8,6 +8,14 @@ export function createBlog(data) {
   })
 }
 
+export function updateBlog(data) {
+  return request({
+    url: '/vue-element-admin/blog/update',
+    method: 'post',
+    data
+  })
+}
+
 export function getBlogInfo() {
   return request({
     url: '/vue-element-admin/blog/fetchAll',
@@ -20,5 +28,13 @@ export function getBlogInfoById(id) {
     url: '/vue-element-admin/blog/fetchById',
     method: 'get',
     params: { id }
+  })
+}
+
+export function getBlogInfoByToken(token) {
+  return request({
+    url: '/vue-element-admin/blog/fetchByToken',
+    method: 'get',
+    params: { token }
   })
 }

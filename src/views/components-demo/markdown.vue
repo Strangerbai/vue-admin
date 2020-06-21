@@ -50,20 +50,44 @@
           <markdown-editor ref="markdownEditor" v-model="markdownForm.content" :language="language" />
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="submitForm">创建</el-button>
+          <el-button type="primary" @click="submitForm">创建/更新</el-button>
+          <el-button style="margin-top:80px;" type="primary" icon="el-icon-document" @click="getHtml">
+            预览
+          </el-button>
+          <el-button type="primary" @click="getList">查看历史博客</el-button>
         </el-form-item>
       </el-form>
+      <el-table v-loading="listLoading" :data="list" border fit highlight-current-row style="width: 100%">
+        <el-table-column align="center" label="ID" width="80">
+          <template slot-scope="scope">
+            <span>{{ scope.row.id }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column min-width="300px" label="Title">
+          <template slot-scope="{row}">
+            <router-link :to="'/components/blog/'+row.id" class="link-type">
+              <span>{{ row.title }}</span>
+            </router-link>
+          </template>
+        </el-table-column>
+
+        <el-table-column align="center" label="操作" min-width="300px">
+          <template slot-scope="{row}">
+            <el-button v-if="true" type="success" size="small" icon="el-icon-circle-check-outline" @click="updateForm(row)">
+              更新
+            </el-button>
+          </template>
+        </el-table-column>
+
+      </el-table>
     </div>
-    <el-button style="margin-top:80px;" type="primary" icon="el-icon-document" @click="getHtml">
-      Get HTML
-    </el-button>
     <div v-html="html" />
   </div>
 </template>
 
 <script>
 import MarkdownEditor from '@/components/MarkdownEditor'
-import { createBlog } from '../../api/blog'
+import { createBlog, getBlogInfoByToken } from '../../api/blog'
 import { getToken } from '../../utils/auth'
 
 const content = `
@@ -79,7 +103,11 @@ export default {
   components: { MarkdownEditor },
   data() {
     return {
+      list: null,
+      total: 0,
+      listLoading: false,
       markdownForm: {
+        id: '',
         title: '',
         description: '',
         content: content,
@@ -128,6 +156,23 @@ export default {
           })
         }
       })
+    },
+    getList() {
+      this.listLoading = true
+      getBlogInfoByToken(getToken()).then(response => {
+        this.list = response.data
+        console.log(this.list)
+        this.listLoading = false
+      })
+    },
+    updateForm(row) {
+      console.log(this.markdownForm.content)
+      // eslint-disable-next-line no-undef
+      this.markdownForm.token = getToken()
+      this.markdownForm.id = row.id
+      this.markdownForm.content = row.content
+      this.markdownForm.title = row.title
+      this.markdownForm.description = row.description
     }
   }
 }

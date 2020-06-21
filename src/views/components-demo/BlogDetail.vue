@@ -1,8 +1,8 @@
 <template>
   <div class="demo">
     <div class="mblog">
-      <h2>{{ blog.title }}</h2>
-      <h2>{{ blog.description }}</h2>
+      <h3>{{ blog.title }}</h3>
+      <i>{{ blog.description }}</i>
       <div class="content" v-html="mdResult" />
     </div>
   </div>
